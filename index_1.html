@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meadow House Repairs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--cream:#fbf6ea;--paper:#fffdf7;--ink:#1c2b24;--muted:#4d5d56;--forest:#1f4d3a;--leaf:#3f8f5f;--sun:#f4b942;--clay:#b8432b;--sky:#1b4f87;--line:#d9d2bd;--field:#6f7f77;--focus:#1b4f87;
+--serif:"Fraunces",Georgia,"Times New Roman",serif;--sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 var(--sans)}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;margin:0}
+.hero{background:linear-gradient(180deg,#cfe8f4 0%,#f9efcf 62%,#fbf6ea 100%);position:relative;overflow:hidden;padding:28px 20px 0}
+.hero-in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:end}
+.eyebrow{display:inline-block;background:var(--forest);color:#fff;font-weight:700;font-size:.875rem;letter-spacing:.04em;padding:4px 12px;border-radius:99px}
+.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:800;color:var(--forest);margin:12px 0 8px}
+.hero h1 em{font-style:normal;color:var(--clay)}
+.hero p{max-width:520px;margin:0 0 20px;font-size:1.0625rem}
+.art{width:100%;height:auto;display:block}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px 40px;display:grid;gap:22px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-6px}
+.stat{background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:12px 14px}
+.stat b{display:block;font:800 2rem/1 var(--serif)}
+.stat span{font-size:.875rem;color:var(--muted);font-weight:500}
+.stat.s1{border-top:6px solid var(--sky)}.stat.s2{border-top:6px solid var(--sun)}.stat.s3{border-top:6px solid var(--leaf)}.stat.s0{border-top:6px solid var(--forest)}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.how div{background:var(--paper);border:2px dashed var(--line);border-radius:14px;padding:12px 14px;font-size:.9375rem}
+.how strong{display:block;font-family:var(--serif);font-size:1.0625rem;color:var(--forest)}
+.panel{background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:20px;min-width:0}
+.panel>h2{font-size:1.5rem;color:var(--forest);margin-bottom:4px}
+.sub{margin:0 0 8px;color:var(--muted);font-size:.9375rem}
+label{display:block;font-weight:700;margin:14px 0 5px}
+input,textarea,select{width:100%;font:inherit;color:var(--ink);background:#fff;border:2px solid var(--field);border-radius:10px;padding:10px 12px}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:10px;padding:10px 18px;margin-top:14px;border:2px solid var(--forest);background:var(--forest);color:#fff;transition:transform .12s}
+button:hover{transform:translateY(-1px)}
+button.alt{background:var(--sun);border-color:#8a5d00;color:#2b1d00}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.err{color:#8f1d1d;background:#fdeaea;border-left:5px solid #b42318;padding:6px 10px;margin:6px 0 0;border-radius:6px;font-size:.9375rem;font-weight:500}
+.err[hidden]{display:none}
+[aria-invalid=true]{border-color:#b42318}
+.msg{color:#14532d;background:#e3f5e8;border-left:5px solid var(--leaf);padding:9px 12px;margin-top:14px;border-radius:8px;font-weight:700}
+.msg:empty{display:none}
+.hint{font-size:.8125rem;color:var(--muted);margin:4px 0 0}
+.job{border:2px solid var(--line);border-radius:16px;padding:16px;margin-top:16px;background:#fff;border-top:8px solid var(--sky);min-width:0}
+.job.st-In-Progress{border-top-color:var(--sun)}.job.st-Completed{border-top-color:var(--leaf)}
+.top{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}
+.top h3{font-size:1.25rem}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-size:.875rem;font-weight:700;padding:3px 11px;border-radius:99px;border:2px solid}
+.b-New{background:#e3effb;color:#1b4f87;border-color:#1b4f87}
+.b-In-Progress{background:#fff1cc;color:#5c3d00;border-color:#8a5d00}
+.b-Completed{background:#def3e5;color:#14532d;border-color:#14532d}
+.b-Normal{background:#f0eee6;color:#333;border-color:#6b6b60}
+.b-Urgent{background:#fde4dc;color:#8f2a14;border-color:#8f2a14}
+.steps{list-style:none;display:flex;gap:6px;padding:0;margin:14px 0;font-size:.875rem;font-weight:700;color:var(--muted)}
+.steps li{flex:1;display:flex;align-items:center;gap:6px;border-top:4px solid var(--line);padding-top:6px}
+.steps .dot{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--line);color:#333;font-size:.8125rem;flex:none}
+.steps .done{border-color:var(--leaf);color:var(--forest)}.steps .done .dot{background:var(--leaf);color:#fff}
+.steps .now{border-color:var(--forest);color:var(--ink)}.steps .now .dot{background:var(--forest);color:#fff}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:5px 14px;margin:8px 0}
+dt{font-weight:700;color:var(--forest)}dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap}
+.callout{border-radius:10px;padding:10px 12px;margin:10px 0;overflow-wrap:anywhere;white-space:pre-wrap}
+.callout b{display:block;font-size:.875rem}
+.note{background:#fff6dc;border:2px solid #d9b54a}.done{background:#e3f5e8;border:2px solid var(--leaf)}
+h4{margin:16px 0 0;font:700 1rem var(--sans);color:var(--forest)}
+.hist{list-style:none;margin:8px 0 0;padding:0 0 0 14px;border-left:3px solid var(--line)}
+.hist li{position:relative;padding:4px 0 10px 12px;overflow-wrap:anywhere;white-space:pre-wrap}
+.hist li::before{content:"";position:absolute;left:-23px;top:10px;width:13px;height:13px;border-radius:50%;background:var(--forest);border:3px solid #fff}
+.hist time{display:block;font-size:.875rem;color:var(--muted);font-weight:700}
+.empty{text-align:center;color:var(--muted);padding:26px 10px;border:2px dashed var(--line);border-radius:14px;margin-top:12px}
+footer{text-align:center;color:var(--muted);font-size:.875rem;padding:0 16px 28px}
+@media (max-width:760px){.hero-in{grid-template-columns:1fr}.art{max-width:360px;margin:0 auto}.stats{grid-template-columns:repeat(2,1fr)}.how{grid-template-columns:1fr}.row{grid-template-columns:1fr}dl{grid-template-columns:1fr}dt{margin-top:6px}.steps{font-size:.8125rem}}
+@media (prefers-reduced-motion:reduce){button{transition:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="hero-in">
+<div>
+<span class="eyebrow">MEADOW HOUSE · MAINTENANCE DESK</span>
+<h1>Spot it. Log it. <em>Fix it.</em></h1>
+<p>One calm place for staff to report repairs, follow every step and see exactly what was done. Each job keeps its own story from first report to final check.</p>
+</div>
+<svg class="art" viewBox="0 0 400 190" role="img" aria-label="Illustration of a cottage on green hills under a sun">
+<circle cx="330" cy="46" r="26" fill="#f4b942"/>
+<path d="M0 150 Q100 90 210 140 T400 120 V190 H0Z" fill="#7fc08f"/>
+<path d="M0 172 Q120 128 240 164 T400 150 V190 H0Z" fill="#3f8f5f"/>
+<rect x="140" y="92" width="110" height="66" fill="#fffdf7" stroke="#1f4d3a" stroke-width="4"/>
+<path d="M128 96 L195 46 L262 96Z" fill="#b8432b" stroke="#1f4d3a" stroke-width="4" stroke-linejoin="round"/>
+<rect x="182" y="120" width="26" height="38" rx="3" fill="#1f4d3a"/>
+<rect x="152" y="108" width="22" height="20" fill="#cfe8f4" stroke="#1f4d3a" stroke-width="3"/>
+<rect x="218" y="108" width="22" height="20" fill="#cfe8f4" stroke="#1f4d3a" stroke-width="3"/>
+<g stroke="#1f4d3a" stroke-width="3"><path d="M20 160v-22M36 160v-22M52 160v-22M68 160v-22M14 148h60"/></g>
+</svg>
+</div>
+</header>
+
+<main class="wrap">
+<div class="stats" role="group" aria-label="Job summary">
+<div class="stat s0"><b id="n-all">0</b><span>Total jobs</span></div>
+<div class="stat s1"><b id="n-new">0</b><span>New</span></div>
+<div class="stat s2"><b id="n-prog">0</b><span>In Progress</span></div>
+<div class="stat s3"><b id="n-done">0</b><span>Completed</span></div>
+</div>
+
+<div class="how">
+<div><strong>1 · Report</strong>Describe the problem, say who is reporting and choose Normal or Urgent.</div>
+<div><strong>2 · Track</strong>Move the job to In Progress and add dated notes as work happens.</div>
+<div><strong>3 · Complete</strong>Close it with a completion note so everyone knows what was done.</div>
+</div>
+
+<section class="panel" aria-labelledby="fh">
+<h2 id="fh">Report a repair</h2>
+<p class="sub">All fields are required. Use fictional details only.</p>
+<form id="f" novalidate>
+<label for="desc">Repair description</label>
+<textarea id="desc" aria-describedby="desc-h desc-e"></textarea>
+<p class="hint" id="desc-h">What needs fixing and where? For example: Garden fence damaged.</p>
+<p class="err" id="desc-e" hidden></p>
+<div class="row">
+<div>
+<label for="rep">Reporter name</label>
+<input id="rep" type="text" autocomplete="off" aria-describedby="rep-e">
+<p class="err" id="rep-e" hidden></p>
+</div>
+<div>
+<label for="pri">Priority</label>
+<select id="pri"><option>Normal</option><option>Urgent</option></select>
+</div>
+</div>
+<button type="submit">Submit repair report</button>
+</form>
+<div class="msg" id="created" role="status" tabindex="-1"></div>
+</section>
+
+<section class="panel" aria-labelledby="jh">
+<h2 id="jh">Repair jobs</h2>
+<p class="sub">Newest first. Every job keeps its own status, notes and history.</p>
+<div id="jobs"></div>
+</section>
+</main>
+<footer>Meadow House is a fictional house. Please use made-up people and details only, never real care records.</footer>
+
+<script>
+const KEY='meadowHouseJobs.v2';
+let jobs=[];
+try{jobs=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(jobs))jobs=[]}catch(e){jobs=[]}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(jobs))}catch(e){}};
+const $=id=>document.getElementById(id);
+const fmt=iso=>new Date(iso).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'medium'});
+const cls=s=>s.replace(' ','-');
+function el(tag,props={},...kids){const e=document.createElement(tag);
+ for(const k in props){if(k==='text')e.textContent=props[k];else e.setAttribute(k,props[k])}
+ kids.forEach(c=>c&&e.append(c));return e}
+function setErr(input,p,msg){p.textContent=msg||'';p.hidden=!msg;if(msg)input.setAttribute('aria-invalid','true');else input.removeAttribute('aria-invalid')}
+function nextId(){const n=jobs.reduce((m,j)=>Math.max(m,parseInt(String(j.id).replace(/\D/g,''),10)||0),0)+1;return 'MH-'+String(n).padStart(4,'0')}
+function stats(){const c=s=>jobs.filter(j=>j.status===s).length;
+ $('n-all').textContent=jobs.length;$('n-new').textContent=c('New');$('n-prog').textContent=c('In Progress');$('n-done').textContent=c('Completed')}
+
+$('f').addEventListener('submit',e=>{
+ e.preventDefault();
+ const d=$('desc'),r=$('rep'),dv=d.value.trim(),rv=r.value.trim();
+ setErr(d,$('desc-e'),dv?'':'Please describe the repair. The description cannot be empty or only spaces.');
+ setErr(r,$('rep-e'),rv?'':'Please enter the reporter name. It cannot be empty or only spaces.');
+ $('created').textContent='';
+ if(!dv){d.focus();return}
+ if(!rv){r.focus();return}
+ const now=new Date().toISOString(),p=$('pri').value;
+ const job={id:nextId(),house:'Meadow House',description:dv,reporter:rv,priority:p,status:'New',created:now,completionNote:'',
+  history:[{at:now,status:'New',text:'Repair reported by '+rv+' ('+p+' priority).'}]};
+ jobs.unshift(job);save();
+ d.value='';r.value='';$('pri').value='Normal';
+ renderAll();
+ const c=$('created');c.textContent='Job '+job.id+' created with status New ('+p+' priority).';c.focus();
+});
+
+function renderAll(){
+ const box=$('jobs');box.textContent='';stats();
+ if(!jobs.length){box.append(el('div',{class:'empty',text:'No repair jobs yet. Submit a report above and your first job will appear here.'}));return}
+ jobs.forEach(j=>box.append(el('article',{class:'job st-'+cls(j.status),id:'job-'+j.id,'aria-labelledby':'t-'+j.id})));
+ jobs.forEach(j=>draw(document.getElementById('job-'+j.id),j));
+}
+function stepper(st){
+ const names=['New','In Progress','Completed'],idx=names.indexOf(st),ol=el('ol',{class:'steps','aria-label':'Repair progress'});
+ names.forEach((n,i)=>ol.append(el('li',i===idx?{class:'now','aria-current':'step'}:{class:i<idx?'done':''},el('span',{class:'dot','aria-hidden':'true',text:i<idx?'✓':String(i+1)}),document.createTextNode(n))));
+ return ol}
+function draw(wrap,j,msg){
+ const id=j.id;wrap.textContent='';wrap.className='job st-'+cls(j.status);
+ wrap.append(el('div',{class:'top'},el('h3',{id:'t-'+id,text:'Job '+id}),
+  el('div',{class:'badges'},el('span',{class:'badge b-'+j.priority,text:j.priority==='Urgent'?'Urgent priority':'Normal priority'}),el('span',{class:'badge b-'+cls(j.status),text:'Status: '+j.status}))));
+ wrap.append(stepper(j.status));
+ const dl=el('dl');
+ [['Job ID',id],['Date reported',fmt(j.created)],['House',j.house],['Description',j.description],['Reporter',j.reporter],['Priority',j.priority]]
+  .forEach(([k,v])=>dl.append(el('dt',{text:k}),el('dd',{text:v})));
+ wrap.append(dl);
+ const latest=[...j.history].reverse().find(h=>h.kind==='note');
+ if(latest)wrap.append(el('div',{class:'callout note'},el('b',{text:'Latest progress note · '+fmt(latest.at)}),document.createTextNode(latest.text)));
+ if(j.status==='Completed')wrap.append(el('div',{class:'callout done'},el('b',{text:'Completion note'}),document.createTextNode(j.completionNote)));
+ const live=el('div',{class:'msg',role:'status',tabindex:'-1',text:msg||''});wrap.append(live);
+ const back=m=>{draw(wrap,j,m);wrap.querySelector('[role=status]').focus()};
+
+ if(j.status==='New'){
+  const b=el('button',{type:'button',text:'Move to In Progress'});
+  b.onclick=()=>{j.status='In Progress';j.history.push({at:new Date().toISOString(),status:'In Progress',text:'Status changed to In Progress.'});save();stats();back('Job '+id+' is now In Progress.')};
+  wrap.append(b);
+ }
+ if(j.status==='In Progress'){
+  const f=el('form',{novalidate:''}),ni=el('textarea',{id:'n-'+id,'aria-describedby':'ne-'+id}),ne=el('p',{class:'err',id:'ne-'+id,hidden:''});
+  f.append(el('h4',{text:'Add a progress update'}),el('label',{for:'n-'+id,text:'Progress note'}),ni,ne,el('button',{type:'submit',text:'Save progress note'}));
+  f.onsubmit=e=>{e.preventDefault();const v=ni.value.trim();
+   if(!v){setErr(ni,ne,'Please enter a progress note. It cannot be empty or only spaces.');ni.focus();return}
+   j.history.push({at:new Date().toISOString(),status:'In Progress',kind:'note',text:v});save();back('Progress note saved to job '+id+'.')};
+  wrap.append(f);
+ }
+ if(j.status!=='Completed'){
+  const f=el('form',{novalidate:''}),ci=el('textarea',{id:'c-'+id,'aria-describedby':'ce-'+id}),ce=el('p',{class:'err',id:'ce-'+id,hidden:''});
+  f.append(el('h4',{text:'Complete this repair'}),el('label',{for:'c-'+id,text:'Completion note'}),ci,ce,el('button',{type:'submit',class:'alt',text:'Mark as Completed'}));
+  f.onsubmit=e=>{e.preventDefault();const v=ci.value.trim();
+   if(!v){setErr(ci,ce,'A completion note is required to complete this job. Its status and history are unchanged.');ci.focus();return}
+   j.status='Completed';j.completionNote=v;j.history.push({at:new Date().toISOString(),status:'Completed',kind:'completion',text:v});save();stats();back('Job '+id+' marked Completed.')};
+  wrap.append(f);
+ }
+ wrap.append(el('h4',{text:'History'}));
+ const ul=el('ul',{class:'hist'});
+ j.history.forEach(h=>ul.append(el('li',{},el('time',{datetime:h.at,text:fmt(h.at)+' · '+h.status}),document.createTextNode(h.text))));
+ wrap.append(ul);
+}
+renderAll();
+</script>
+</body>
+</html>
